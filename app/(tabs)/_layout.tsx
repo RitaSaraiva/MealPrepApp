@@ -1,8 +1,9 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform } from "react-native";
+import { Button, Platform } from "react-native";
 
 import { HapticTab } from "@/components/HapticTab";
+import Header from "@/components/ui/Header/header";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
@@ -17,7 +18,8 @@ export default function TabLayout() {
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-          headerShown: false,
+          headerShown: true,
+          tabBarShowLabel: false,
           tabBarButton: HapticTab,
           tabBarBackground: TabBarBackground,
           tabBarStyle: Platform.select({
@@ -32,6 +34,7 @@ export default function TabLayout() {
         <Tabs.Screen
           name="index"
           options={{
+            header: () => <Header />,
             title: "Home",
             tabBarIcon: ({ color }) => (
               <IconSymbol size={28} name="house.fill" color={color} />
@@ -47,7 +50,23 @@ export default function TabLayout() {
             ),
           }}
         />
+
+        <Tabs.Screen
+          name="explore2"
+          options={{
+            title: "Explore2",
+            tabBarIcon: ({ color }) => (
+              <IconSymbol size={28} name="paperplane.fill" color={color} />
+            ),
+          }}
+        />
       </Tabs>
+      <Button
+        title="Open Modal"
+        onPress={() => {
+          console.log("pressed");
+        }}
+      />
     </SafeAreaProvider>
   );
 }

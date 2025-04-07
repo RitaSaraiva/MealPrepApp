@@ -1,18 +1,15 @@
-import { Text, View } from "react-native";
+import previewUserImage from "@/assets/images/placeholder/userImagePreview.png";
+import { Image, Text, View } from "react-native";
+import { getStyles } from "./headerStyle";
 
 const Header = () => {
+  const styles = getStyles();
   return (
-    <View
-      style={{
-        height: 80,
-        backgroundColor: "white",
-        justifyContent: "flex-end",
-        padding: 16,
-      }}
-    >
+    <View style={styles.container}>
       <Text>
         Good Morning, <Text style={{ fontWeight: "bold" }}>Rita</Text>
       </Text>
+      <Image source={previewUserImage} />
     </View>
   );
 };
